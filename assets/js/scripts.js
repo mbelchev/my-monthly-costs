@@ -77,6 +77,32 @@ $(document).ready(function() {
         }    
     });
 
+    $('.login-form').on('submit', function(e) {
+        e.preventDefault();
+
+        var input = {
+            email: $('.login-form input[name="form-email"]'),
+            password: $('.login-form input[name="form-password"]')
+        }
+
+        if( input.email.val() == '' || input.password.val() == '' ) {
+            $(this).addClass('input-error');
+            showMsg('danger', 'Please fill all inputs!');
+        } else {
+            checkUser(input.email.val(), input.password.val()).success(function(msg) {
+                console.log(msg);
+                if (msg.length == 0) {
+                    input.email.addClass('input-error');
+                    input.password.addClass('input-error');
+                    showMsg('danger', 'Wrong email or password!');    
+                } else {
+                    $(this).removeClass('input-error');
+                    showMsg('success', 'Logged in successfully!');
+                }
+            });
+        }
+    });
+
     $('.sign-up').on('click', function() {
         showForm('signUp');
     });

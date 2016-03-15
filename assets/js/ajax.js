@@ -24,3 +24,10 @@ function checkEmail(email) {
         dataType: 'json'
     });
 }
+
+function checkUser(email, password) {
+	return $.ajax(DB.users + '?email=' + email + '&password=' + password, {
+		method: 'GET',
+		dataType: 'json'
+	});
+}
