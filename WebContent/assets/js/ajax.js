@@ -55,9 +55,10 @@ function getCatById(catId) {
 	});
 }
 
-function getCatByName(catName) {
+function getCatByNameAndUser(catName, userId) {
 	return $.get(DB.categories, {
 		name: catName,
+		added_by: userId,
 	});
 }
 

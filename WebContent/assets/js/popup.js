@@ -5,7 +5,8 @@ $(document).ready(function() {
 		else if ( expense.indexOf("-") >= 0 )
 			showMsg('danger', 'Wrong value!');
 		else postExpense(expense, category, user.id).success(function() {
-			updateSpentMoney(parseInt(user.spentMoney) + parseInt(expense), user).success(function() {
+			spentMoney = isNaN(parseInt(user.spentMoney)) ? 0 : parseInt(user.spentMoney);
+			updateSpentMoney(spentMoney + parseInt(expense), user).success(function() {
 				setTimeout(window.location.reload(), 800);
 			});
 		});
@@ -22,7 +23,7 @@ $(document).ready(function() {
 	$('#addNewCategory').on('click', function() {
 		if ( !(name = $('#categoryName').val()) || !(color = $('#categoryColor').val()) || !(icon = $('#categoryIcon').val())) 
 			showMsg('danger', 'Fill all fields!');
-		else getCatByName(name).success(function(data) {
+		else getCatByNameAndUser(name, user.id).success(function(data) {
 			if (data.length > 0) showMsg('danger', 'This category already exists!');
 			else postCategory(name, color, icon, user.id).success(function() {
 				showMsg('success', 'Category added successfully!');

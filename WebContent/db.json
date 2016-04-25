@@ -1,72 +1,8 @@
 {
   "users": [
-    {
-      "email": "marianbelchev@gmail.com",
-      "password": 123456,
-      "budget": 2000,
-      "spentMoney": 205,
-      "currency": "BGN",
-      "id": 5
-    }
   ],
   "categories": [
-    {
-      "name": "Car fuel",
-      "icon": "fa fa-car",
-      "color": "#000",
-      "added_by": 5,
-      "id": 2
-    },
-    {
-      "name": "Food",
-      "icon": "fa fa-cutlery",
-      "color": "#F1F1F1",
-      "added_by": 5,
-      "id": 3
-    },
-    {
-      "name": "Test",
-      "icon": "fa fa-american-sign-language-interpreting",
-      "color": "#ccc",
-      "added_by": 5,
-      "id": 4
-    }
   ],
   "expenses": [
-    {
-      "spent": 20,
-      "user_id": 5,
-      "cat_id": 2,
-      "date": "Sat Apr 23 2016 16:30:04 GMT+0300 (EEST)",
-      "id": 1
-    },
-    {
-      "spent": 10,
-      "user_id": 5,
-      "cat_id": 2,
-      "date": "Sat Apr 23 2016 16:31:21 GMT+0300 (EEST)",
-      "id": 2
-    },
-    {
-      "spent": 20,
-      "user_id": 5,
-      "cat_id": 3,
-      "date": "Sat Apr 23 2016 16:50:05 GMT+0300 (EEST)",
-      "id": 3
-    },
-    {
-      "spent": 32,
-      "user_id": 5,
-      "cat_id": 3,
-      "date": "Mon Apr 25 2016 22:18:06 GMT+0300 (EEST)",
-      "id": 4
-    },
-    {
-      "spent": 123,
-      "user_id": 5,
-      "cat_id": 4,
-      "date": "Mon Apr 25 2016 22:19:21 GMT+0300 (EEST)",
-      "id": 5
-    }
   ]
 }
