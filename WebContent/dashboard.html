@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Monthly Costs - Dashboard</title>
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/css/dashboard/main.css">
+        <link rel="stylesheet" href="assets/css/dashboard/custom.css">
+    </head>
+
+	<body class="none">
+		<nav class="navbar navbar-inverse navbar-static-top" role="navigation">
+			<div class="container col-md-8 col-md-offset-2">
+				<div class="navbar-header col-md-5 col-xs-10">
+					<a class="navbar-brand" href="#"><span>Monthly</span> Costs</a>
+				</div>
+
+					<ul class="user-menu">
+						<li class="dropdown pull-right">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <span id="user-email"></span> <span class="caret"></span></a>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="" id="logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+							</ul>
+						</li>
+					</ul>
+			</div>
+		</nav>
+			
+		<div class="col-md-8 col-md-offset-2">			
+			<!-- panel-orange, panel-red, panel-blue, panel-teal -->
+
+			<div class="col-md-7">
+				<div class="row">
+					<div class="panel panel-default">
+						<div class="panel-body text-center">
+							<div class="canvas-wrapper">
+								<canvas class="chart" id="pie-chart" ></canvas>
+							</div>
+							
+							<button class="btn btn-primary" data-toggle="modal" data-target="#addExpenseModal"><i class="fa fa-plus" aria-hidden="true"></i> Add an expense</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="panel panel-default">
+						<div class="panel-heading">History</div>
+						<div class="panel-body">
+							<table class="table table-striped table-hover table-condensed table-responsive">
+							    <thead>
+								    <tr>
+								        <th>Expense</th>
+								        <th>Category</th>
+								        <th>Date</th>
+								    </tr>
+							    </thead>
+							    <tbody class="expenses">
+							    </tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="col-md-1"></div>
+
+			<div class="col-md-4">
+				<div class="row">
+					<div class="panel panel-default">
+						<div class="panel-body easypiechart-panel">
+							<h4>Left Money</h4>
+							<div class="easypiechart" id="easypiechart" data-percent="" ><span class="percent" id="left-money"></span></div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="panel panel-blue panel-widget">
+						<div class="row no-padding">
+							<div class="col-md-3 widget-left"><i class="fa fa-money fa-3x"></i></div>
+							<div class="col-md-9 widget-right">
+								<div class="large" id="spentMoney"></div>
+								<div class="text-muted">Total spent money</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+<!-- 				<div class="row"> -->
+<!-- 					<div class="panel panel-red panel-widget "> -->
+<!-- 						<div class="row no-padding"> -->
+<!-- 							<div class="col-md-3 widget-left"><i class="fa fa-archive fa-3x"></i></div> -->
+<!-- 							<div class="col-md-9 widget-right"> -->
+<!-- 								<div class="large">120</div> -->
+<!-- 								<div class="text-muted">Bought Items</div> -->
+<!-- 							</div> -->
+<!-- 						</div> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+
+				<div class="row">
+					<div class="panel panel-orange panel-widget ">
+						<div class="row no-padding">
+							<div class="col-md-3 widget-left"><i class="fa fa-credit-card fa-3x"></i></div>
+							<div class="col-md-9 widget-right">
+								<div class="large" id="budget"></div>
+								<div class="text-muted">Monthly Budget - <a data-toggle="modal" data-target="#changeBudgetModal">Change</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="panel panel-blue">
+						<div class="panel-heading dark-overlay"><i class="fa fa-list"></i> Categories</div>
+						<div class="panel-body">
+							<ul class="todo-list">
+<!-- 								<li class="todo-list-item"> -->
+<!-- 									<div class="checkbox"> -->
+<!-- 										<i class="fa fa-shopping-cart"></i> -->
+<!-- 										<label for="checkbox">Shopping</label> -->
+<!-- 									</div> -->
+<!-- 									<div class="pull-right action-buttons"> -->
+<!-- 										<a href="#"><i class="fa fa-pencil"></i></a> -->
+<!-- 										<a href="#" class="trash"><i class="fa fa-trash-o"></i></a> -->
+<!-- 									</div> -->
+<!-- 								</li> -->
+							</ul>
+						</div>
+						<div class="panel-footer">
+							<div class="input-group">
+								<button class="btn btn-primary" data-toggle="modal" data-target="#addCategory">Add New Category</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+
+<!-- MODAL BOXES start -->
+	<div class="modal fade" tabindex="-1" role="dialog" id="addExpenseModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Adding expense</h4>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger" style="display: none;"></div>
+					<div class="alert alert-success" style="display: none;"></div>
+					
+					<form>
+						<div class="form-group">
+							<label for="expenseValue">Expense</label>
+							<input type="number" class="form-control" id="expenseValue" placeholder="Money" />
+						</div>
+						<div class="form-group">
+							<label for="expenseCategory">Category</label>
+							<select class="form-control" id="expenseCategory">
+								<option disabled>Select Category</option>
+							</select>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="addExpense">Add</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="changeBudgetModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Changing budget</h4>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger" style="display: none;"></div>
+					<div class="alert alert-success" style="display: none;"></div>
+					
+					<form>
+						<div class="form-group">
+							<label for="budgetValue">New Budget</label>
+							<input type="number" class="form-control" id="budgetValue" placeholder="Money" />
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="changeBudget">Change</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+	<div class="modal fade" tabindex="-1" role="dialog" id="addCategory">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Adding category</h4>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger" style="display: none;"></div>
+					<div class="alert alert-success" style="display: none;"></div>
+					
+					<form>
+						<div class="form-group">
+							<label for="budgetValue">Category name</label>
+							<input type="text" class="form-control" id="categoryName" placeholder="Name" />
+						</div>
+
+						<div class="form-group">
+							<label for="budgetValue">Color</label>
+							<input type="text" class="form-control" id="categoryColor" placeholder="Use HEX colors (ex: #FFFFFF)" />
+						</div>
+
+						<div class="form-group">
+							<label for="budgetValue">Icon</label>
+							<input type="text" class="form-control" id="categoryIcon" placeholder="Use Font-Awesome classes (ex: fa fa-shopping-cart)" />
+							<p class="help-block">See all icons: <a href="https://fortawesome.github.io/Font-Awesome/icons/" target="blank">Here</a></p>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="addNewCategory">Add</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+	
+		<div class="modal fade" tabindex="-1" role="dialog" id="editCategory">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title">Editing category</h4>
+				</div>
+				<div class="modal-body">
+					<div class="alert alert-danger" style="display: none;"></div>
+					<div class="alert alert-success" style="display: none;"></div>
+					
+					<form>
+						<div class="form-group">
+							<label for="budgetValue">Category name</label>
+							<input type="text" class="form-control" id="categoryName" placeholder="Name" />
+						</div>
+
+						<div class="form-group">
+							<label for="budgetValue">Color</label>
+							<input type="text" class="form-control" id="categoryColor" placeholder="Use HEX colors (ex: #FFFFFF)" />
+						</div>
+
+						<div class="form-group">
+							<label for="budgetValue">Icon</label>
+							<input type="text" class="form-control" id="categoryIcon" placeholder="Use Font-Awesome classes (ex: fa fa-shopping-cart)" />
+							<p class="help-block">See all icons: <a href="https://fortawesome.github.io/Font-Awesome/icons/" target="blank">Here</a></p>
+						</div>
+						<input type="hidden" id="categoryId" />
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" id="editTheCategory">Edit</button>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+<!-- MODAL BOXES end -->
+
+		<script src="assets/js/jquery-1.11.1.min.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+		<script src="assets/js/js.cookie.js"></script>
+		<script src="assets/js/lodash.min.js"></script>
+		<script src="assets/js/ajax.js"></script>
+		<script src="assets/js/chart.min.js"></script>
+		<script src="assets/js/dashboard.js"></script>
+		<script src="assets/js/easypiechart.js"></script>
+		<script src="assets/js/popup.js"></script>
+	</body>
+</html>
