@@ -5,9 +5,9 @@ $(document).ready(function() {
 		else if ( expense.indexOf("-") >= 0 )
 			showMsg('danger', 'Wrong value!');
 		else postExpense(expense, category, user.id).success(function() {
-			updateSpentMoney(parseInt(user.spentMoney) + parseInt(expense), user);
-		}).then(function() {
-			setTimeout(window.location.reload(), 800);
+			updateSpentMoney(parseInt(user.spentMoney) + parseInt(expense), user).success(function() {
+				setTimeout(window.location.reload(), 800);
+			});
 		});
 	});
 	
